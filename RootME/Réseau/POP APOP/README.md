@@ -14,7 +14,7 @@ Lors de l'ouverture du fichier, on remarque des échanges avec le protocol POP.
 
 pour ce chall, deux lignes nous intéressent :
 
-<img width="1152" height="648" alt="wireshark apop" src="https://github.com/user-attachments/assets/f2aedf10-27f9-4b2b-9af2-7fc82066c6f8" />
+<img width="705" height="157" alt="wireshark_popapop" src="https://github.com/user-attachments/assets/4320d19b-c177-4269-b040-e2a5ad3356c5" />
 
 
 ------------------------------------------------------------------------
