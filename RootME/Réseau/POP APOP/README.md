@@ -16,7 +16,12 @@ pour ce chall, deux lignes nous intéressent :
 
 <img width="705" height="157" alt="wireshark_popapop" src="https://github.com/user-attachments/assets/4320d19b-c177-4269-b040-e2a5ad3356c5" />
 
+Ces deux lignes permettent l'envoi d'un identifiant et d'un mot de passe pour le client. Plusieurs informations sont importantes :
 
+- Le "challenge" :
+  ```bash
+<1755.1.5f403625.BcWGgpKzUPRC8vscWn0wuA==@vps-7e2f5a72>
+- L'identifiant
 ------------------------------------------------------------------------
 
 ## 💡 Conclusion cruciale
