@@ -47,4 +47,6 @@ Ici, j'ai utilisé rockyou.txt, et voici le résultat :
 
 <img width="521" height="80" alt="flag" src="https://github.com/user-attachments/assets/b0766e78-9065-4fa7-9d92-0fa8da36ba60" />
 
+On retrouve le mot de passe, qui nous permet de valider le chall 🔥
+
 ------------------------------------------------------------------------
