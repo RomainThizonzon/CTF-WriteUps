@@ -1,4 +1,4 @@
-# 🔐 Writeup -- LDAP Anonymous (Root‑Me)
+# 🔐 Writeup -- ETHERNET Transmission Altérée (Root‑Me)
 
 ## 📌 Catégorie
 
@@ -6,24 +6,12 @@ Réseau
 
 ## 🧩 Énoncé
 
-Un administrateur soupçonne qu'un membre des Anonymous s'est infiltré
-dans une **nouvelle branche de l'annuaire LDAP** à l'intérieur de :
+Ces trames ont été altérées lors de leur interception sur le switch, retrouvez les informations perdues.
 
-    dc=challenge01,dc=root-me,dc=org
+Le mot de passe de validation attendu fait 20 caractères, soit 10 octets en notation hexadécimal en caractère minuscule.
 
 Objectif :\
-➡️ **Trouver la branche créée par l'Anonymous et récupérer son adresse
-email.**
-
-### Paramètres de connexion
-
-  Paramètre   Valeur
-  ----------- -------------------------
-  Host        challenge01.root-me.org
-  Port        54013
-  Protocole   LDAP
-
-------------------------------------------------------------------------
+➡️ **Reconstruire la trame réseau contenant des "?".**
 
 # 🧠 Comprendre le challenge
 
