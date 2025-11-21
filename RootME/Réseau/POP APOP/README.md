@@ -18,80 +18,33 @@ pour ce chall, deux lignes nous intéressent :
 
 Ces deux lignes permettent l'envoi d'un identifiant et d'un mot de passe pour le client. Plusieurs informations sont importantes :
 
-- Le "challenge" :
-  ```bash
-<1755.1.5f403625.BcWGgpKzUPRC8vscWn0wuA==@vps-7e2f5a72>
-- L'identifiant
-------------------------------------------------------------------------
+- Le "challenge", envoyé par le serveur et utilisé dans la création du hash md5:
+  ```
+  <1755.1.5f403625.BcWGgpKzUPRC8vscWn0wuA==@vps-7e2f5a72>
+  ```
 
-## 💡 Conclusion cruciale
+- L'identifiant, envoyé dans la seconde ligne du screen par le client:
+  ```
+  bsmith
+  ```
 
-La présence d'une **seule** trame egress implique :
+- Le "Digest APOP", le hash MD5 qui contient le challenge et le mot de passe
+  ```
+  4ddd4137b84ff2db7291b568289717f0
+  ```
 
--   Seule **une** ingress a généré une réponse\
--   Donc seules ses valeurs doivent être utilisées\
--   Ingress 1 et 3 doivent être écartées\
--   **Ingress 2 est la seule trame authentique et exploitable**
+Le digest APOP est construit en faisant le md5 du challenge+password.
+Il est donc possible de bruteforce le mot de passe si on a le challenge et le digest APOP
 
-Ce point constitue la clé du challenge.
+## 📥 Récupération du mot de passe
 
-------------------------------------------------------------------------
+Le script python utilisé est disponible en fichier dans ce repo, voici le code:
 
-## 🔧 Reconstruction de la trame egress
+<img width="624" height="500" alt="image" src="https://github.com/user-attachments/assets/84bcbc43-0821-4cdf-b3d4-5ec15ecce6c4" />
 
-La trame egress correspond à une **ICMPv6 Echo Reply** (réponse au
-ping).\
-Pour la reconstruire à partir d'ingress 2 :
+Ce code fait simplement le bruteforce du mot de passe, à partir d'une wordlist.
+Ici, j'ai utilisé rockyou.txt, et voici le résultat :
 
-### 1. Inverser les adresses
-
-  Champ         Ingress 2               Egress reconstruite
-  ------------- ----------------------- -----------------------
-  MAC source    `00:50:56:9E:7B:F9`     `00:50:56:9E:7B:F7`
-  MAC dest      `00:50:56:9E:7B:F7`     `00:50:56:9E:7B:F9`
-  IPv6 source   `2002:c000:203::b00b`   `2002:c000:203::fada`
-  IPv6 dest     `2002:c000:203::fada`   `2002:c000:203::b00b`
-
-### 2. Conserver les champs réseau
-
--   VLAN ID\
--   Next Header (ICMPv6)\
--   Hop Limit\
--   Payload Length
-
-### 3. Réutiliser les champs ICMPv6
-
--   Identifiant\
--   Numéro de séquence\
--   Data\
--   Checksum (ou recalculé si nécessaire)
-
-La seule modification du protocole ICMPv6 est :
-
-    Type 128 (Echo Request) → Type 129 (Echo Reply)
+<img width="521" height="80" alt="flag" src="https://github.com/user-attachments/assets/b0766e78-9065-4fa7-9d92-0fa8da36ba60" />
 
 ------------------------------------------------------------------------
-
-## ✅ Résultat et validation
-
-En reconstruisant la trame egress **exclusivement** à partir de la trame
-ingress 2,\
-on obtient une trame complète et cohérente, permettant d'extraire le mot
-de passe attendu (10 octets → 20 hex chars).
-
-Les deux autres trames ingress étaient **volontairement incorrectes** :\
-une fois ignorées, le challenge devient logique et entièrement
-déterministe.
-
-------------------------------------------------------------------------
-
-## 🏁 Conclusion
-
-Le challenge reposait sur un piège classique en analyse réseau :
-
-> **Ne jamais assumer que toutes les entrées sont valides.\
-> Seule la trame ingress ayant réellement généré une egress doit être
-> utilisée.**
-
-En identifiant que seule l'ingress 2 était correcte, la reconstruction
-devient immédiate.
