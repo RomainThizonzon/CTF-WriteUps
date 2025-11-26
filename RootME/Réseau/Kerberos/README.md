@@ -14,11 +14,11 @@ Format du flag : RM{userPrincipalName:password}
 Kerberos est un protocol qui permet de s'authentifier lors d'une connexion à un serveur.
 Dans les environnements Windows, il est principalement utilisé lors des connexions aux services d'un domaine Active Directory
 Le client, pour s'authentifier, va demander au KDC (Key Distribution Center), qui gère l'envoi des tickets (Pour l'AD, c'est dans le Domain Controller) un ticket signé.
-Pour que le KDC donne le ticket signé, il vérifie si le client a le droit d'accéder à ce qu'il demande. Pour ça :
-Le client chiffre un timestamp (l'heure actuelle) avec son hash de mot de passe.
+Pour que le KDC donne le ticket signé, il vérifie si le client existe et si son mdp est bon. Pour ça :
+Le client chiffre un timestamp (l'heure actuelle) avec une clé dérivée de son mdp (Genre AES256 du mdp).
 Il envoit au KDC son username, ainsi que son timestamp chiffré.
-Le KDC (DC pour l'AD) déchiffre le timestamp à l'aide du hash du client, qu'il détient.
-Si le hash est bon pour déchiffrer, il délivre au client un ticket signé.
+Le KDC (DC pour l'AD) déchiffre le timestamp à l'aide de la clé dérivée du mdp, qu'il détient.
+Si la clé est bonne pour déchiffrer, il délivre au client un ticket signé.
 Le client envoie ce ticket au serveur, pour s'authentifier.
 Le serveur vérifie la signature du ticket. Si tout est bon, il donne l'accès au client.
 
