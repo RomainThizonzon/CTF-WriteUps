@@ -51,7 +51,7 @@ Deux tables existent : `news` et `users`
 
 On veut afficher le mot de passe de l'administrateur. Pour cela, on va chercher comment la table users est créée :
 ```
-?news_id=1 UNION SELECT 1,sql,3 FROM sqlite_master LIMIT 1 OFFSET 1
+news_id=1 UNION SELECT 1,sql,3 FROM sqlite_master LIMIT 1 OFFSET 1
 ```
 <img width="498" height="189" alt="image" src="https://github.com/user-attachments/assets/bf0e36ae-ddd4-4c75-a9a5-4cc50c3f64fb" />
 
