@@ -35,7 +35,7 @@ Le client chiffre le challenge à l'aide de son hash, puis envoie le résultat a
 Le serveur demande au DC de vérifier si le username existe, et si le hash qui a chiffré le challenge est le bon (Comme le DC connait les usernames et hashes)
 Si c'est bon, le client est connecté
 
-## Explotation
+## Exploitation
 
 On cherche le mot de passe d'un utilisateur.
 
