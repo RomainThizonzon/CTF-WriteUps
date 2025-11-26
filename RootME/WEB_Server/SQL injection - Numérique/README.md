@@ -42,7 +42,6 @@ Ce paramètre retourne une page sans erreur :
 Maintenant que nous connaissons le nombre de colonnes, on va afficher les tables de la BDD :
 ```
 news_id=1 UNION SELECT 1,name,3 FROM sqlite_master
-
 ```
 
 <img width="413" height="266" alt="image" src="https://github.com/user-attachments/assets/68563107-2044-4448-b8b8-0165d70843f2" />
