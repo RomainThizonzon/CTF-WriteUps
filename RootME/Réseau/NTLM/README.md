@@ -77,7 +77,7 @@ catcorp.local
 
 Ainsi que la NTLM Response, le chiffrement du challenge, qui contient :
 
-- Le NTProofStr (Les 16 premiers octetcs) :
+- Le NTProofStr (Les 16 premiers octets) :
 `
 5c336c6b69fd2cf7b64eb0bde3102162
 `
