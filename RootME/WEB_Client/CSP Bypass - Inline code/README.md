@@ -51,6 +51,10 @@ On remarque dans cette CSP 3 lignes critiques :
 
 Les redirections HTTP ne sont pas bloquées, on peut donc utiliser document.location pour renvoyer vers notre webhook
 
+On a pu remarquer lors de la première capture d'écran l'existence d'une page `http://challenge01.root-me.org:58008/report`, qui permet d'envoyer un lien au robot. C'est exactement ici qu'on veut envoyer notre payload pour que le robot nous donne les informations dont on a besoin.
+
+<img width="721" height="378" alt="image" src="https://github.com/user-attachments/assets/52439617-0c68-4aed-aa74-ccfe1546530b" />
+
 ### Création du Payload
 
 On crée notre payload pour récupérer le flag, stocké dans le DOM et visible seulement par le bot.
